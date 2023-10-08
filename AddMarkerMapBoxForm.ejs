@@ -1,0 +1,41 @@
+<form id="map-form" action="/your-server-endpoint" method="POST">
+    <div id="map" style="width: 400px; height: 300px;"></div>
+    <input type="hidden" name="longitude" id="longitude">
+    <input type="hidden" name="latitude" id="latitude">
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [0, 0],
+        zoom: 2
+    });
+
+    var marker;
+
+    map.on('click', function(e) {
+        if (marker) {
+            marker.remove();
+        }
+
+        marker = new mapboxgl.Marker()
+            .setLngLat(e.lngLat)
+            .addTo(map);
+
+        document.getElementById('longitude').value = e.lngLat.lng;
+        document.getElementById('latitude').value = e.lngLat.lat;
+    });
+
+    document.getElementById('map-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var data = new FormData(this);
+        fetch(this.action, {
+            method: this.method,
+            body: data
+        });
+    });
+</script>

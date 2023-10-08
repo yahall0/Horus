@@ -1,0 +1,48 @@
+@import url('https://fonts.cdnfonts.com/css/proxima-nova-2');
+
+html {
+  margin-right: 0;
+}
+
+body {
+  background-color:#F8F0E3;
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+.map-container {
+  max-width: 100%;
+}
+
+.map{
+  border-radius: 50px;
+}
+
+.navbar-custom {
+  background-color: rgb(227, 252, 116) !important;
+  margin-bottom: 0.5vh;
+  color: rgb(173, 173, 173);
+  text-shadow: 5px;
+}
+
+.navbar-custom{
+  color: white !important
+}
+
+.profile-img{
+  width:25px;
+  height:25px;
+  border-radius:4rem;
+  margin-top: 0.68rem;
+}
+
+.form-container {
+  background-color: rgba(240, 255, 255, 0.664);
+  max-width: 85%;
+  min-width: 80%;
+  border-radius: 10px;
+}
+
+.new-map-container {
+  margin-top: 2vh;
+  width: 100%;
+}
