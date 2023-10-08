@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-5 col-sm-7 offset-lg-1"  >
                 <div class="card mb-3 shadow">
-                    <a href="<%= `http://www.google.com/maps/place/${complaint.latitude},${complaint.longitude}` %>" target="_blank"> <img class="img-fluid" src="<%= `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-l+000(${complaint.longitude},${complaint.latitude})/${complaint.longitude},${complaint.latitude}, 14/1000x600?access_token=${mapboxToken}` %>"
+                    <a href="<%= `http://www.google.com/maps/place/${complaint.latitude},${complaint.longitude}` %>" target="_blank"> <img class="img-fluid" src="<%= `https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/static/pin-s-l+000(${complaint.longitude},${complaint.latitude})/${complaint.longitude},${complaint.latitude}, 14/1000x600?access_token=${mapboxToken}` %>"
                         class="card-img-top"> </a>
                     <div class="card-body">
                         <p class="card-text"><small class="text-muted">Click on image to navigate to location</small></p>

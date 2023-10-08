@@ -26,7 +26,7 @@
                 <div class="col-10 offset-1">
                     <form class="needs-validation" action="/new" method="POST">
                         <div class="mb-3 form-floating">
-                            <input class="form-control" type="text" id="title" name="request[title]" required>
+                            <input class="form-control" type="text" id="title" name="complaint[title]" required>
                             <label class="form-label" for="title">Title</label>
                         </div>
                         <div class="mb-3">
@@ -38,16 +38,16 @@
                                 </script>
                                 <script src="../scripts/mapboxConfig.js"></script>
                             </div>
-                            <input type="hidden" name="request[longitude]" id="longitude" required value="<%= Math.random() * 180 - 90%>">
-                            <input type="hidden" name="request[latitude]" id="latitude" required value="<%= Math.random() * 360 - 180%>">
+                            <input type="hidden" name="complaint[longitude]" id="longitude" required value="<%= Math.random() * 180 - 90%>">
+                            <input type="hidden" name="complaint[latitude]" id="latitude" required value="<%= Math.random() * 360 - 180%>">
                         </div>
                         <div class="mb-3">
-                            <label for="startDate">Start Date</label>
-                            <input id="startDate" class="form-control" type="date" name="request[date]" / required>
+                            <label for="startDate">Approximately when this happened / started</label>
+                            <input id="startDate" class="form-control" type="date" name="complaint[date]" / required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="description">Description</label>
-                            <textarea class="form-control" type="text" id="description" name="request[description]"
+                            <textarea class="form-control" type="text" id="description" name="complaint[description]"
                                 required></textarea>
                         </div>
                         <div class="mb-3">

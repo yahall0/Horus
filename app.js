@@ -122,59 +122,41 @@ app.get("/complaints/:complaintId", async (req, res) => {
     res.render("complaint.ejs", { mapboxToken, complaint})
 })
 
-//New Help request
-//New request forum
+//Add a complaint
 app.get("/new", isLoggedIn, (req, res) => {
     res.render("new.ejs", { mapboxToken })
 })
 
-//receive request
+//receive complaint
 app.post("/new", isLoggedIn, async (req, res) => {
     const author = await User.findOne({ googleID: req.user.id })
-    const newReq = new Complaint({
-        title: req.body.request.title,
-        longitude: req.body.request.longitude,
-        latitude: req.body.request.latitude,
-        date: req.body.request.date,
-        description: req.body.request.description,
+    const newComplaint = new Complaint({
+        title: req.body.complaint.title,
+        longitude: req.body.complaint.longitude,
+        latitude: req.body.complaint.latitude,
+        date: req.body.complaint.date,
+        description: req.body.complaint.description,
         author: author._id
     })
-    if (swearDetect.profane(newReq.title + " " + newReq.description)) {
+    if (swearDetect.profane(newComplaint.title + " " + newComplaint.description)) {
         const error = "Profanity or explicit text in the title and/or description will not be accepted";
         return res.render("new.ejs", {mapboxToken, error});
     }
-    await newReq.save()
+    await newComplaint.save()
     res.redirect("/")
  
 })
 
 //delete a request 
-app.delete("/:requestId/delete", isLoggedIn, async (req, res) => {
-    const request = await Complaint.findById(req.params.requestId).populate('author')
-    if (req.user.id == request.author.googleID) {
-        await Complaint.deleteOne({ _id: req.params.requestId })
+app.delete("/:complaintId/delete", isLoggedIn, async (req, res) => {
+    const complaint = await Complaint.findById(req.params.complaintId).populate('author')
+    if (req.user.id == complaint.author.googleID) {
+        await Complaint.deleteOne({ _id: req.params.complaintId })
         res.redirect("/")
     }
     else {
-        res.send("Unauthorised Complaint")
+        res.send("Unauthorised Delete Attempt")
     }
-})
-
-//volunteer for a request
-app.put("/:requestId/volunteer", isLoggedIn, async (req, res) => {
-    const request = await Complaint.findById(req.params.requestId).populate('author')
-    const user = await User.findOne({ googleID: req.user.id })
-    const volunteer = new Volunteer({
-        UserID: user._id,
-        requestId: request._id
-    })
-    request.volunteers.push(volunteer)
-    user.volunteers.push(volunteer)
-    await request.save()
-    await user.save()
-    await volunteer.save()
-    res.redirect(`/requests/${req.params.requestId}`)
-
 })
 
 //FAQ Page
@@ -182,28 +164,28 @@ app.get("/faq", (req, res) => {
     res.render("faq.ejs")
 })
 
-//report a request
-app.put("/:requestId/report", isLoggedIn, async (req, res) => {
-    const id = req.params.requestId.trim()
-    const request = await Complaint.findById(id).populate('author').populate(
-        {
-            path: "volunteers",
-            populate: {
-                path: 'UserID',
-                model: 'User'
-            }
-        }
-    );
-    const user = await User.findOne({ googleID: req.user.id })
-    request.reports.push(user)
-    if(request.reports.length >= 6)
-    {
-        Complaint.deleteOne(id)
-        res.redirect("/")
-    }
-    request.save()
-    res.redirect(`/requests/${req.params.requestId}`)
-})
+//report a complaint
+// app.put("/:complaintId/report", isLoggedIn, async (req, res) => {
+//     const id = req.params.complaintId.trim()
+//     const complaint = await Complaint.findById(id).populate('author').populate(
+//         {
+//             path: "volunteers",
+//             populate: {
+//                 path: 'UserID',
+//                 model: 'User'
+//             }
+//         }
+//     );
+//     const user = await User.findOne({ googleID: req.user.id })
+//     request.reports.push(user)
+//     if(request.reports.length >= 6)
+//     {
+//         Complaint.deleteOne(id)
+//         res.redirect("/")
+//     }
+//     request.save()
+//     res.redirect(`/requests/${req.params.requestId}`)
+// })
 
 //If page not found
 /*app.all("*", (req, res, next) => {
