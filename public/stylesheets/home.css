@@ -56,7 +56,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 1rem;
   width: 60vw;
   height: 100vh;
 }
