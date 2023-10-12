@@ -10,7 +10,7 @@ body {
 }
 
 .map-container {
-  max-width: 100%;
+  max-width: 35%;
 }
 
 .map{
@@ -45,4 +45,27 @@ body {
 .new-map-container {
   margin-top: 2vh;
   width: 100%;
+}
+
+.comp-card {
+  margin-top: 1rem;
+ max-height: 30vh;
+}
+
+#comp-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4rem;
+  width: 60vw;
+  height: 100vh;
+}
+
+.home-main-div {
+  display: flex;
+}
+
+.card-image {
+  height: auto;
+  width: auto;
 }
