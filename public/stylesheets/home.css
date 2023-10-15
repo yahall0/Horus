@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background-color:#F8F0E3;
+  background-color:#F8F0E4;
   font-family: 'Proxima Nova', sans-serif;
 }
 
@@ -18,7 +18,8 @@ body {
 }
 
 .navbar-custom {
-  background-color: rgb(227, 252, 116) !important;
+  /* background-color: rgb(227, 252, 116) !important; */
+  background-color: #fd5c63 !important;
   margin-bottom: 0.5vh;
   color: rgb(173, 173, 173);
   text-shadow: 5px;
@@ -32,7 +33,7 @@ body {
   width:25px;
   height:25px;
   border-radius:4rem;
-  margin-top: 0.68rem;
+  margin-top: 0.5rem;
 }
 
 .form-container {
@@ -48,15 +49,16 @@ body {
 }
 
 .comp-card {
-  margin-top: 1rem;
- max-height: 30vh;
+ margin-top: 1.3rem;
+ max-height: 40vh;
 }
 
 #comp-card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1rem;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
   width: 60vw;
   height: 100vh;
 }
