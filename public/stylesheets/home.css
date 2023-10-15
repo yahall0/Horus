@@ -13,7 +13,7 @@ body {
   max-width: 35%;
 }
 
-.map{
+.map {
   border-radius: 50px;
 }
 
@@ -25,14 +25,14 @@ body {
   text-shadow: 5px;
 }
 
-.navbar-custom{
-  color: white !important
+.navbar-custom {
+  color:white !important
 }
 
-.profile-img{
-  width:25px;
-  height:25px;
-  border-radius:4rem;
+.profile-img {
+  width: 25px;
+  height: 25px;
+  border-radius: 4rem;
   margin-top: 0.5rem;
 }
 
@@ -49,8 +49,8 @@ body {
 }
 
 .comp-card {
- margin-top: 1.3rem;
- max-height: 40vh;
+  margin-top: 1.3rem;
+  max-height: 40vh;
 }
 
 #comp-card-container {
