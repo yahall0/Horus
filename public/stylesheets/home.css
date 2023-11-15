@@ -10,7 +10,9 @@ body {
 }
 
 .map-container {
-  max-width: 35%;
+  width: 80%;
+  height: 20%;
+ 
 }
 
 .map{
@@ -49,20 +51,19 @@ body {
 
 .comp-card {
   margin-top: 1rem;
- max-height: 30vh;
+  max-height: 40vh;
+  width: 80vw;
+  margin-left: 5vw;
+
 }
 
 #comp-card-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  width: 60vw;
-  height: 100vh;
+  
 }
 
 .home-main-div {
   display: flex;
+  flex-direction: column;
 }
 
 .card-image {

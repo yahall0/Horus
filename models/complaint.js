@@ -26,10 +26,6 @@ const complaintSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    // volunteers: [{
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'Volunteer'
-    // }],
     reports: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'

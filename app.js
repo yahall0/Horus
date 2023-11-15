@@ -147,7 +147,7 @@ app.post("/new", isLoggedIn, async (req, res) => {
  
 })
 
-//delete a request 
+//delete a complaint
 app.delete("/:complaintId/delete", isLoggedIn, async (req, res) => {
     const complaint = await Complaint.findById(req.params.complaintId).populate('author')
     if (req.user.id == complaint.author.googleID) {

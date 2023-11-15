@@ -14,11 +14,7 @@
         },
         username: {
             type: String
-        },
-        volunteers: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Volunteer'
-        }]
+        }
     })
 
     const User = mongoose.model('User', userSchema)

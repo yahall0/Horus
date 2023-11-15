@@ -42,6 +42,11 @@
                             <input type="hidden" name="complaint[latitude]" id="latitude" required value="<%= Math.random() * 360 - 180%>">
                         </div>
                         <div class="mb-3">
+                            <label class="cameraButton">Take a picture
+                                <input type="file" accept="image/*;capture=camera">
+                              </label>
+                        </div>
+                        <div class="mb-3">
                             <label for="startDate">Approximately when this happened / started</label>
                             <input id="startDate" class="form-control" type="date" name="complaint[date]" / required>
                         </div>
@@ -75,5 +80,29 @@
             });
         </script>
     </body>
+
+
+    <style>
+        label.cameraButton {
+            display: inline-block;
+            margin: 1em 0;
+    
+            /* Styles to make it look like a button */
+            padding: 0.5em;
+            border: 2px solid #666;
+            border-color: #EEE #CCC #CCC #EEE;
+            background-color: #DDD;
+        }
+    
+        /* Look like a clicked/depressed button */
+        label.cameraButton:active {
+            border-color: #CCC #EEE #EEE #CCC;
+        }
+    
+        /* This is the part that actually hides the 'Choose file' text box for camera inputs */
+        label.cameraButton input[accept*="camera"] {
+            display: none;
+        }
+    </style>
 
 </html>
