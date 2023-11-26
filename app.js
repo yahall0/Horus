@@ -19,7 +19,9 @@ const Complaint = require("./models/complaint")
 // const Volunteer = require("./models/volunteer")
 const swearDetect = require("swearjar")
 const badWords = require("bad-words")
-
+const {storage, cloudinary} = require("./cloudinary.js")
+const multer = require("multer")
+const upload = multer({storage})
 
 app = express()
 app.set("view engine", 'ejs')
@@ -111,7 +113,6 @@ app.get("/", async (req, res) => {
     {
         info = "Note: Red Markers are your requests:p"
     }*/
-    console.log(complaints)
     res.render("home.ejs", { mapboxToken, complaints, info })
 })
 
@@ -128,8 +129,10 @@ app.get("/new", isLoggedIn, (req, res) => {
 })
 
 //receive complaint
-app.post("/new", isLoggedIn, async (req, res) => {
+app.post("/new", isLoggedIn, upload.single('theImage'), async (req, res) => {
     const author = await User.findOne({ googleID: req.user.id })
+    console.log(req.body)
+    console.log(req.file)
     const newComplaint = new Complaint({
         title: req.body.complaint.title,
         longitude: req.body.complaint.longitude,
@@ -138,6 +141,8 @@ app.post("/new", isLoggedIn, async (req, res) => {
         description: req.body.complaint.description,
         author: author._id
     })
+    // newComplaint.image = req.files.map(f => { return { url: f.path, fileName: f.filename } })
+    newComplaint.image = { url: req.file.path, fileName: req.file.filename }
     if (swearDetect.profane(newComplaint.title + " " + newComplaint.description)) {
         const error = "Profanity or explicit text in the title and/or description will not be accepted";
         return res.render("new.ejs", {mapboxToken, error});
@@ -151,6 +156,7 @@ app.post("/new", isLoggedIn, async (req, res) => {
 app.delete("/:complaintId/delete", isLoggedIn, async (req, res) => {
     const complaint = await Complaint.findById(req.params.complaintId).populate('author')
     if (req.user.id == complaint.author.googleID) {
+        cloudinary.uploader.destroy(complaint.image.fileName)
         await Complaint.deleteOne({ _id: req.params.complaintId })
         res.redirect("/")
     }

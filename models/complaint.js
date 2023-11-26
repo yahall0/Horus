@@ -29,7 +29,15 @@ const complaintSchema = new mongoose.Schema({
     reports: [{
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    // image: [{
+    //     url: String,
+    //     fileName: String
+    // }],
+    image: {
+        url: String,
+        fileName: String
+    }
 }) 
 
 complaintSchema.virtual("properties.popUpMarker").get(function() {
