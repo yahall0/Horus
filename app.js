@@ -129,7 +129,7 @@ app.get("/new", isLoggedIn, (req, res) => {
 })
 
 //receive complaint
-app.post("/new", isLoggedIn, upload.single('theImage'), async (req, res) => {
+app.post("/new", isLoggedIn, upload.single('canvasImage'), async (req, res) => {
     const author = await User.findOne({ googleID: req.user.id })
     console.log(req.body)
     console.log(req.file)
