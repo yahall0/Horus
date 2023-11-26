@@ -51,10 +51,10 @@ body {
 
 .comp-card {
   margin-top: 1rem;
-  max-height: 40vh;
+  height: 27rem;
   width: 80vw;
   margin-left: 5vw;
-
+  margin-bottom: 50rem;
 }
 
 #comp-card-container {
