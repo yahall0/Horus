@@ -31,32 +31,35 @@
                             Map
                         </button>
                     </div>
-                    <div id="comp-card-container">
-                        <% for(let complaint of complaints) { %>
-                            <div class="card mb-0 comp-card">
-                                <div class="row">
-                                    <div>
-                                        <img src="<%= complaint.image.url %>"
-                                            class="img-fluid rounded-start card-image" alt="...">  
-                                    </div>
-                                    <div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <%= complaint.title %>
-                                            </h5>
-                                            <p class="card-text">
-                                                <%= complaint.description %>
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">
-                                                    <%= complaint.author.username%>
-                                                </small></p>
-                                            <a href="/complaints/<%= complaint._id %>" class="btn btn-primary">Learn
-                                                More</a>
+                    <div id="comp-card-container" class="container-fluid flex-column">
+                        <div class="d-flex flex-column  ">
+                            <% for(let complaint of complaints) { %>
+                                <div class="card mb-3 comp-card text-white bg-warning">
+                                    <div class="row">
+                                        <div>
+                                            <img src="<%= complaint.image.url %>"
+                                                class="img-fluid rounded-start card-image" alt="...">
+                                        </div>
+                                        <div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%= complaint.title %>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <%= complaint.description %>
+                                                </p>
+                                                <p class="card-text"><small class="text-muted">
+                                                        <%= complaint.author.username%>
+                                                    </small></p>
+                                                <a href="/complaints/<%= complaint._id %>" class="btn btn-info">Learn
+                                                    More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <% } %>
+                                
+                                <% } %>
+                        </div>
                     </div>
 
                 </main>
@@ -82,28 +85,28 @@
                                     </script>
                                     <script src="../scripts/mapboxConfig.js"></script>
                                     <script>
-                                        map.on('load', () => {
-                                            for (let complaint of complaints) {
-                                                const deleteHtml = (userId == complaint.author._id) ?
-                                                    `<form action="/${complaint._id}/delete?_method=DELETE" method=POST>
+                                            map.on('load', () => {
+                                                for (let complaint of complaints) {
+                                                    const deleteHtml = (userId == complaint.author._id) ?
+                                                        `<form action="/${complaint._id}/delete?_method=DELETE" method=POST>
                                             <button class="btn btn-danger btn-sm" style="padding: 0.5px;">Delete</button>  
                                         </form>` : ``
 
-                                                const linkHtml = `<a href="/complaints/${complaint._id}">More Info</a>`
-                                                let markerPopup = new mapboxgl.Popup({ offset: 25 })
-                                                    .setHTML(`<b>${complaint.title} </b><br> <small class="text-muted">by ${complaint.author.username}</small> <br> 
+                                                    const linkHtml = `<a href="/complaints/${complaint._id}">More Info</a>`
+                                                    let markerPopup = new mapboxgl.Popup({ offset: 25 })
+                                                        .setHTML(`<b>${complaint.title} </b><br> <small class="text-muted">by ${complaint.author.username}</small> <br> 
                                                 Details: ${complaint.description.substr(0, 30)}...<br>`
-                                                        + linkHtml)
-                                                const marker = new mapboxgl.Marker((userId == complaint.author._id) ? { color: "red" } : { color: "#5423F6" })
-                                                    .setLngLat([complaint.longitude, complaint.latitude])
-                                                    .setPopup(markerPopup)
-                                                    .addTo(map)
+                                                            + linkHtml)
+                                                    const marker = new mapboxgl.Marker((userId == complaint.author._id) ? { color: "red" } : { color: "#5423F6" })
+                                                        .setLngLat([complaint.longitude, complaint.latitude])
+                                                        .setPopup(markerPopup)
+                                                        .addTo(map)
 
-                                            }
+                                                }
 
-                                            map.resize();
+                                                map.resize();
 
-                                        })
+                                            })
                                         map.on('click', function () {
                                             map.resize()
                                         })

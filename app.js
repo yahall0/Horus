@@ -131,12 +131,11 @@ app.get("/new", isLoggedIn, (req, res) => {
 //receive complaint
 app.post("/new", isLoggedIn, upload.single('canvasImage'), async (req, res) => {
     const author = await User.findOne({ googleID: req.user.id })
-    console.log(req.body)
-    console.log(req.file)
+    console.log(req.body.latitude)
     const newComplaint = new Complaint({
         title: req.body.complaint.title,
-        longitude: req.body.complaint.longitude,
-        latitude: req.body.complaint.latitude,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude,
         date: req.body.complaint.date,
         description: req.body.complaint.description,
         author: author._id
