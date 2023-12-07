@@ -38,15 +38,6 @@
                              </form>
                         <% } %>
                         <p class="card-text"><small class="text-muted"> 
-                        <% if(currentUser != null && currentUser._id.toString() != complaint.author._id ) { %>
-                            <form action="/<%= complaint._id %>/report?_method=PUT" method=POST>
-                                <% if(reported) { %>
-                                    <button class="btn btn-warning";" disabled>Reported</button>  
-                                <% } else { %>
-                                    <button class="btn btn-warning";">Report</button>  
-                                <% } %>    
-                            </form>
-                        <% } %></small></p></small></p>
                         <p class="card-text"><small class="text-muted">Click on image to open in google maps</small></p>
                     </div>
                     <a href="<%= `http://www.google.com/maps/place/${complaint.latitude},${complaint.longitude}` %>" target="_blank"> <img class="img-fluid" src="<%= `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-l+000(${complaint.longitude},${complaint.latitude})/${complaint.longitude},${complaint.latitude}, 14/1000x600?access_token=${mapboxToken}` %>"
